@@ -3,7 +3,7 @@ import Scene       = require("../lib/scenes/Scene");
 import myGame      = require("../MyGame");
 import Sprite      = require("../lib/scenes/actors/Sprite");
 
-import Spinner     = require("./actors/Spinner");
+import Spinner     = require("./actors/Anx");
 
 /**
  * MyScene class
@@ -18,10 +18,10 @@ class MyScene extends Scene {
 
   reset() {
     super.reset();
-    if (!this.spritesByName["spinner"]) {
-      let sprite = new Sprite({ name: "spinner" });
-      sprite.img.src = "./assets/sprites/spinner.png";
-      sprite.size.set(512);
+    if (!this.spritesByName["anx_walk"]) {
+      let sprite = new Sprite({ name: "anx_walk" });
+      sprite.img.src = "./assets/sprites/anx_walk.png";
+      sprite.size.set(256);
       this.addSprite(sprite);
     }
     this.addActor(new Spinner());

@@ -1,6 +1,6 @@
-Game of the month: June 2017
-============================
-Yet another game...
+Danger everywhere
+=================
+Something about anxiety.. You just gotta walk it off..
 
 Credits
 -------
