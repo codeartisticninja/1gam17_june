@@ -43,6 +43,9 @@ class Anx extends Actor {
       if (joy.fire && this.anxiety > 200) {
         this.anxiety *= -1;
       }
+      if (this.anxiety <= -1) {
+        this.scale.set(Math.sqrt(Math.abs(this.anxiety)));
+      }
       this.velocity.set(0);
       this.playAnimation("idle");
     }
