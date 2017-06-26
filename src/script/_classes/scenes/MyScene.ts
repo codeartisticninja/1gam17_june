@@ -2,8 +2,9 @@
 import Scene       = require("../lib/scenes/Scene");
 import myGame      = require("../MyGame");
 import Sprite      = require("../lib/scenes/actors/Sprite");
+import MediaPlayer = require("../lib/utils/MediaPlayer");
 
-import Spinner     = require("./actors/Anx");
+import Anx         = require("./actors/Anx");
 
 /**
  * MyScene class
@@ -24,7 +25,8 @@ class MyScene extends Scene {
       sprite.size.set(256);
       this.addSprite(sprite);
     }
-    this.addActor(new Spinner());
+    this.addActor(new Anx());
+    this.game.mediaChannels["music"].play("./assets/music/AuditoryCheesecake_CollectCalls.mp3", true);
   }
 
 }
