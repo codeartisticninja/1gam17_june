@@ -29,5 +29,12 @@ class MyScene extends Scene {
     this.game.mediaChannels["music"].play("./assets/music/AuditoryCheesecake_CollectCalls.mp3", true);
   }
 
+  render() {
+    let g = this.game.ctx;
+    g.fillStyle = "rgba(0,0,0,"+ ((100-this.actors[0]["anxiety"])/100) +")";
+    g.fillRect(0, 0, this.game.canvas.width, this.game.canvas.height);
+    return super.render();
+  }
+
 }
 export = MyScene;

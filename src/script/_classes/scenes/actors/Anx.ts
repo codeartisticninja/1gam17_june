@@ -6,7 +6,7 @@ import Actor = require("../../lib/scenes/actors/Actor");
  */
 
 class Anx extends Actor {
-  public anxiety=0;
+  public anxiety=-100;
 
   constructor() {
     super();
@@ -25,7 +25,7 @@ class Anx extends Actor {
     }
     var joy = this.scene.game.joypad;
     if (joy.dir.magnitude) {
-      if (this.anxiety > 5) {
+      if (this.anxiety > 16) {
         this.anxiety += -joy.dir.magnitude;
       }
       this.velocity.copyFrom(joy.dir).multiplyXY(8);
@@ -52,7 +52,7 @@ class Anx extends Actor {
     g.translate(this.anxiety*Math.random() - this.anxiety*.5, this.anxiety*Math.random() - this.anxiety*.5);
     super.render();
     g.restore();
-    this.scene.game["_canvas"].style.backgroundColor = "rgba(0,0,0,"+ ((100-this.anxiety)/100) +")";
+    // this.scene.game.container.style.backgroundColor = "rgba(0,0,0,"+ ((100-this.anxiety)/100) +"), black";
   }
 
   /*
