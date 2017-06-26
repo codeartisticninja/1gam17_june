@@ -37,9 +37,9 @@ class Anx extends Actor {
         this.scale.x = 1;
       }
     } else {
-      if (this.anxiety < 100) {
+      // if (this.anxiety < 100) {
         this.anxiety += 1;
-      }
+      // }
       this.velocity.set(0);
       this.playAnimation("idle");
     }
