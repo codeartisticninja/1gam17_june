@@ -4,7 +4,7 @@
 /**
  * Tween class
  * 
- * @date 18-may-2017
+ * @date 26-jun-2017
  */
 
 class Tween {
@@ -15,6 +15,7 @@ class Tween {
 
   start() {
     this._startTime = Date.now();
+    this._startProps = {};
     for (var key in this.endProps) {
       this._startProps[key] = this.object[key];
     }

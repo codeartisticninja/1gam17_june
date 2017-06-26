@@ -4,7 +4,7 @@ import Tween = require("./Tween");
 /**
  * MediaPlayer class
  * 
- * @date 18-may-2017
+ * @date 26-jun-2017
  */
 
 class MediaPlayer {
@@ -31,6 +31,7 @@ class MediaPlayer {
 
   constructor(url?:string) {
     this._unlockPlayers = this._unlockPlayers.bind(this);
+    this.players.push(new Audio());
     this.players.push(new Audio());
     if (this.enabled) {
       document.body.addEventListener("touchstart", this._unlockPlayers);
@@ -70,9 +71,10 @@ class MediaPlayer {
   private _volume=1;
 
   private _unlockPlayers() {
-    var player:HTMLAudioElement;
+    var player:HTMLAudioElement, i=0;
     for (player of this.players) {
       player.play();
+      if (i++) player.pause();
     }
     document.body.removeEventListener("touchstart", this._unlockPlayers);
   }
