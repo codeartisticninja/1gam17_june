@@ -13,8 +13,8 @@ import Anx         = require("./actors/Anx");
 class MyScene extends Scene {
   public game:myGame;
 
-  constructor() {
-    super();
+  constructor(game:myGame) {
+    super(game);
   }
 
   reset() {
@@ -25,7 +25,7 @@ class MyScene extends Scene {
       sprite.size.set(256);
       this.addSprite(sprite);
     }
-    this.addActor(new Anx());
+    this.addActor(new Anx(this));
     this.game.mediaChannels["music"].play("./assets/music/AuditoryCheesecake_CollectCalls.mp3", true);
   }
 

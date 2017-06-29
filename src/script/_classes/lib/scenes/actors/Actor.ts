@@ -7,7 +7,7 @@ import Sprite  = require("./Sprite");
 /**
  * Actor class
  * 
- * @date 06-jun-2017
+ * @date 29-jun-2017
  */
 
 interface Animation {
@@ -16,7 +16,6 @@ interface Animation {
 }
 
 class Actor {
-  public scene:Scene;
   public name:string;
   public type:string;
   public sprite:Sprite;
@@ -41,11 +40,16 @@ class Actor {
   public animationFrame:number;
   public nextAnimation:Animation;
 
-  constructor(obj?:any) {
+  constructor(public scene:Scene, obj?:any) {
     if (obj) {
       this.name = obj.name;
       this.type = obj.type;
-      this._gid = obj.gid;
+      if (obj.gid != null) {
+        this.sprite = this.scene.getSpriteByGid(obj.gid);
+        if (this.frame < 0) {
+          this.frame = obj.gid - this.sprite.firstGid;
+        }
+      }
       this.position.x = obj.x || 0;
       this.position.y = (obj.y - (obj.gid==null?0:obj.height)) || this.position.x;
       this.size.x = obj.width || 32;
@@ -115,12 +119,6 @@ class Actor {
   }
 
   render() {
-    if (!this.sprite && this._gid != null) {
-      this.sprite = this.scene.getSpriteByGid(this._gid);
-      if (this.frame < 0) {
-        this.frame = this._gid - this.sprite.firstGid;
-      }
-    }
     if (this.sprite)
       this.sprite.draw(this.frame, 0, this.offset, this.size);
   }
@@ -160,7 +158,6 @@ class Actor {
   /*
     _privates
   */
-  private _gid:number;
 
   private _overlap1D(a1:number, a2:number, b1:number, b2:number) {
     return Math.max(a1, a2) > Math.min(b1, b2) &&

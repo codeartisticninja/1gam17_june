@@ -11,11 +11,10 @@ import Text        = require("./actors/Text");
 /**
  * Scene class
  * 
- * @date 07-jun-2017
+ * @date 29-jun-2017
  */
 
 class Scene {
-  public game:Game;
   public actorTypes:Object = {};
   public actors:Actor[];
   public actorsByType:Object;
@@ -25,7 +24,7 @@ class Scene {
   public gravity:Vector2 = new Vector2();
   public mapData:any;
 
-  constructor(public mapUrl?:string) {
+  constructor(public game:Game, public mapUrl?:string) {
     this.actorTypes["Text"] = Text;
   }
 

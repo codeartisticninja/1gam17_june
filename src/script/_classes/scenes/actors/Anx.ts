@@ -1,5 +1,6 @@
 "use strict";
 import Actor = require("../../lib/scenes/actors/Actor");
+import Scene = require("../../lib/scenes/Scene");
 
 /**
  * Anx class
@@ -8,21 +9,18 @@ import Actor = require("../../lib/scenes/actors/Actor");
 class Anx extends Actor {
   public anxiety=-100;
 
-  constructor() {
-    super();
+  constructor(scene:Scene) {
+    super(scene);
+    this.sprite = this.scene.spritesByName["anx_walk"];
+    this.size.copyFrom(this.sprite.size);
+    this.frame = 1;
+    this.setAnchor(this.size.x/2, this.size.y/2);
+    this.position.set(this.scene.game.canvas.width/2,this.scene.game.canvas.height/2);
+    this.addAnimation("walk", [0,1,2,3]);
+    this.addAnimation("idle", [2]);
   }
 
   update() {
-    if (!this._inited) {
-      this.sprite = this.scene.spritesByName["anx_walk"];
-      this.size.copyFrom(this.sprite.size);
-      this.frame = 1;
-      this.setAnchor(this.size.x/2, this.size.y/2);
-      this.position.set(this.scene.game.canvas.width/2,this.scene.game.canvas.height/2);
-      this.addAnimation("walk", [0,1,2,3]);
-      this.addAnimation("idle", [2]);
-      this._inited = true;
-    }
     var joy = this.scene.game.joypad;
     if (joy.dir.magnitude) {
       if (this.anxiety > 16) {
@@ -64,7 +62,6 @@ class Anx extends Actor {
   /*
     _privates
   */
-  private _inited=false;
 
 }
 export = Anx;

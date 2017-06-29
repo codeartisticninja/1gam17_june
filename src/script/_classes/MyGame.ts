@@ -14,7 +14,7 @@ class MyGame extends Game {
   constructor(container:string|HTMLElement) {
     super(container, 800, 450);
     this.frameRate = 12;
-    this.addScene("main", new MyScene());
+    this.addScene("main", new MyScene(this));
     this.joypad.enable();
     this.startScene("main");
   }
