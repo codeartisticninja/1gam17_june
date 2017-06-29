@@ -59,9 +59,9 @@ class Scene {
         case "objectgroup":
           for (var obj of layer.objects) {
             if (this.actorTypes[obj.type]) {
-              this.addActor(new this.actorTypes[obj.type](obj));
+              this.addActor(new this.actorTypes[obj.type](this, obj));
             } else {
-              this.addActor(new Actor(obj));
+              this.addActor(new Actor(this, obj));
             }
           }
           break;
