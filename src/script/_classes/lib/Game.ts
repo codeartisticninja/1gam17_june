@@ -40,7 +40,7 @@ class Game {
     this._frameInterval = 1000/val;
   }
 
-  constructor(container:string|HTMLElement, width=800, height=450) {
+  constructor(container:string|HTMLElement, width:number, height=width/16*9) {
     if (typeof container === "string") {
       this.container = <HTMLElement>document.querySelector(container);
     } else {

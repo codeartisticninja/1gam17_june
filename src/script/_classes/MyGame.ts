@@ -12,7 +12,7 @@ class MyGame extends Game {
   public scriptVars={}
 
   constructor(container:string|HTMLElement) {
-    super(container, 800, 450);
+    super(container, 960);
     this.frameRate = 12;
     this.addScene("main", new MyScene(this));
     this.joypad.enable();
