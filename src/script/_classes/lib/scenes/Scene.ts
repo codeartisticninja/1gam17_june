@@ -11,7 +11,7 @@ import Text        = require("./actors/Text");
 /**
  * Scene class
  * 
- * @date 29-jun-2017
+ * @date 02-jul-2017
  */
 
 class Scene {
@@ -33,12 +33,14 @@ class Scene {
     this.actors = [];
     this.actorsByType = {};
     if (this.mapUrl) {
+      this.game.loading++;
       http.get(this.mapUrl, function(res){
         var data = "";
         res.on("data", function(chunk:string){ data += chunk; });
         res.on("end", function() {
           _t.mapData = JSON.parse(data.trim());
           _t.loadMap();
+          _t.game.loaded++;
         });
       });
     }
@@ -151,6 +153,12 @@ class Scene {
     this.spritesByFirstGid[sprite.firstGid] = sprite;
     this.spritesByName[sprite.name] = sprite;
     sprite.ctx = this.game.ctx;
+    if (!sprite.img.complete) {
+      this.game.loading++;
+      sprite.img.addEventListener("load", () => {
+        this.game.loaded++;
+      });
+    }
   }
   getSpriteByGid(gid:number) {
     while (gid > -1 && !this.spritesByFirstGid[gid]) {

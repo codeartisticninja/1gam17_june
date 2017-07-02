@@ -15,23 +15,25 @@ if (!Element.prototype.requestFullscreen) {
 /**
  * BaseGameApp class
  * 
- * @date 07-jun-2017
+ * @date 02-jul-2017
  */
 
 class Game {
   public container:HTMLElement;
   public canvas:HTMLCanvasElement;
   public ctx:CanvasRenderingContext2D;
+  public loading=0;
+  public loaded=0;
   public saveFile = new StorageFile("save.json");
   public prefs = new StorageFile("/prefs.json");
+  public joypad = joypad;
+  public scenes = {};
+  public scene:Scene;
   public mediaChannels = {
     "sfx":      new MediaPlayer(),
     "music":    new MediaPlayer(),
     "ambiance": new MediaPlayer()
   };
-  public joypad = joypad;
-  public scenes = {};
-  public scene:Scene;
 
   get frameRate() {
     return 1000/this._frameInterval;
